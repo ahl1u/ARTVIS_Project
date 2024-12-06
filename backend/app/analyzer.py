@@ -51,6 +51,7 @@ class PaperAnalyzer:
         self.client = openai.OpenAI(
             api_key=api_key,
             organization=org_id
+            base_url="https://api.openai.com/v1"
         )
 
         # set the arxiv api endpoint for querying related papers
