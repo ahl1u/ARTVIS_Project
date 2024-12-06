@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { ForceGraph2D } from 'react-force-graph';
-import * as d3 from 'd3-force';
+import { forceCenter, forceCollide } from 'd3-force';
 import { Upload, X, ChevronRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 
@@ -164,11 +164,9 @@ const TopicMap = () => {
       }).strength(0.1); // Maintain the existing link strength      
   
       // Add collision force to prevent node overlap
-      fgRef.current.d3Force('collision', d3.forceCollide(15));
-  
+      fgRef.current.d3Force('collision', forceCollide(15));  
       // Center the graph
-      fgRef.current.d3Force('center', d3.forceCenter(0, 0));
-    }
+      fgRef.current.d3Force('center', forceCenter(0, 0));    }
   }, [graphData]);
   
 
