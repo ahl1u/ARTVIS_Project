@@ -18,17 +18,6 @@ logger = logging.getLogger(__name__)
 # load environment variables from a .env file
 load_dotenv()
 
-# initialize the FastAPI application
-app = FastAPI()
-
-# add middleware to handle cross-origin requests, allowing requests from localhost:3000
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 class PaperAnalyzer:
     def __init__(self):
