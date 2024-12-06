@@ -19,6 +19,20 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 
+app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "your-app.vercel.app",  # Replace with your actual Vercel domain
+        "http://localhost:3000"  # Keep local development working
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class PaperAnalyzer:
     def __init__(self):
         # retrieve openai api key and organization id from environment variables
@@ -313,7 +327,7 @@ class PaperAnalyzer:
             logger.error(f"Error in create_graph_data: {str(e)}")
             raise
 
-
+@app.post("/analyze-paper")
 async def analyze_paper(file: UploadFile):
     """
     endpoint to analyze an uploaded pdf paper, extract topics, find related papers, and return graph data
@@ -345,7 +359,3 @@ async def analyze_paper(file: UploadFile):
         logger.error("traceback:", exc_info=True)
         # return an internal server error with the error details
         raise HTTPException(status_code=500, detail=str(e))
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
