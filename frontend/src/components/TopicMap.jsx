@@ -185,7 +185,7 @@ const TopicMap = () => {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:8000/analyze-paper', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/analyze-paper`, {
         method: 'POST',
         body: formData,
       });
