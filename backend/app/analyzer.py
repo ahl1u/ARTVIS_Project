@@ -314,7 +314,6 @@ class PaperAnalyzer:
             raise
 
 
-@app.post("/analyze-paper")
 async def analyze_paper(file: UploadFile):
     """
     endpoint to analyze an uploaded pdf paper, extract topics, find related papers, and return graph data
