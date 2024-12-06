@@ -25,7 +25,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "your-app.vercel.app",  # Replace with your actual Vercel domain
+        "https://artvis-project-hvcldm9u9-andrews-projects-b189f71a.vercel.app/",  # Replace with your actual Vercel domain
         "http://localhost:3000"  # Keep local development working
     ],
     allow_credentials=True,
@@ -51,7 +51,6 @@ class PaperAnalyzer:
         self.client = openai.OpenAI(
             api_key=api_key,
             organization=org_id,
-            base_url="https://api.openai.com/v1"
         )
 
         # set the arxiv api endpoint for querying related papers
