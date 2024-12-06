@@ -50,7 +50,7 @@ class PaperAnalyzer:
         # initialize the openai client with the api key and organization id
         self.client = openai.OpenAI(
             api_key=api_key,
-            organization=org_id
+            organization=org_id,
             base_url="https://api.openai.com/v1"
         )
 
